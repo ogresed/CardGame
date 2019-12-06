@@ -8,7 +8,8 @@ public class MainMenu extends MainFrame{
 
     public MainMenu(){
         super();
-        setSize(600, 600);
+        setSize(700, 600);
+        setResizable(false);
         AddPanels();
 
         setVisible(true);
@@ -17,18 +18,25 @@ public class MainMenu extends MainFrame{
 
     void AddButtons(){
         CreateButtons();
+        menuPanel.add(playButton);
+        menuPanel.add(saveButton);
+        menuPanel.add(loadButton);
+        menuPanel.add(topButton);
         menuPanel.add(exitButton);
     }
 
     void CreateButtons(){
+        playButton = new JButton(new ImageIcon("resources/icons/play.jpg") );
+        saveButton = new JButton(new ImageIcon("resources/icons/save.jpg") );
+        loadButton = new JButton(new ImageIcon("resources/icons/load.jpg") );
+        topButton = new JButton(new ImageIcon("resources/icons/top.jpg") );
         exitButton = new JButton(new ImageIcon("resources/icons/exit.jpg") );
-        exitButton.setBackground(Color.BLUE);
         exitButton.addActionListener(e -> onExit());
     }
 
     void CreatePanels(){
         menuPanel = new JPanel();
-        menuPanel.setLayout(new GridLayout(6, 1));
+        menuPanel.setLayout(new GridLayout(5, 1));
         AddBackground();
     }
 
@@ -47,6 +55,10 @@ public class MainMenu extends MainFrame{
     }
 
     private JButton exitButton;
+    private JButton saveButton;
+    private JButton loadButton;
+    private JButton playButton;
+    private JButton topButton;
     private JPanel menuPanel;
     private int borderSize = 100;
 }
