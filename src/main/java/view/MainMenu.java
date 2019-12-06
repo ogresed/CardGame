@@ -1,6 +1,7 @@
 package view;
 
 import javax.swing.*;
+import javax.swing.border.MatteBorder;
 import java.awt.*;
 
 public class MainMenu extends MainFrame{
@@ -20,13 +21,15 @@ public class MainMenu extends MainFrame{
     }
 
     void CreateButtons(){
-        exitButton = new JButton("Exit" );
+        exitButton = new JButton(new ImageIcon("resources/icons/exit.jpg") );
+        exitButton.setBackground(Color.BLUE);
         exitButton.addActionListener(e -> onExit());
     }
 
     void CreatePanels(){
         menuPanel = new JPanel();
         menuPanel.setLayout(new GridLayout(6, 1));
+        AddBackground();
     }
 
     void AddPanels(){
@@ -35,11 +38,15 @@ public class MainMenu extends MainFrame{
         add(menuPanel);
     }
 
+    void AddBackground(){
+        menuPanel.setBorder(new MatteBorder(borderSize,borderSize,borderSize,borderSize, new ImageIcon("resources/backgrounds/43MW.gif")));
+    }
+
     private void onExit() {
         System.exit(0);
     }
 
     private JButton exitButton;
     private JPanel menuPanel;
-    private JPanel mainPanel;//меню + фон
+    private int borderSize = 100;
 }
