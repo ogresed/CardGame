@@ -9,5 +9,8 @@
         <module name="CardGame" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel target="13">
+      <module name="CardGame" target="13" />
+    </bytecodeTargetLevel>
   </component>
 </project>
