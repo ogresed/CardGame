@@ -1,5 +1,7 @@
 package game.field;
 
+import game.Config;
+
 import java.util.*;
 
 public class Field implements FieldConstants {
@@ -8,7 +10,6 @@ public class Field implements FieldConstants {
     private int numberOfDifferentCards;
     private int [][]map;
     private Random random = new Random();
-
 
     public Field() {
         defaultInitialization();
@@ -23,6 +24,10 @@ public class Field implements FieldConstants {
             numberOfDifferentCards = differentCards;
         }
         createMap();
+    }
+
+    public Field(Config config) {
+        this(config.getHorizontal(), config.getVertical(), config.getDifferentCards());
     }
 
     private void defaultInitialization() {
@@ -61,6 +66,7 @@ public class Field implements FieldConstants {
                 setCell(i, cellsList);
             }
         }
+        System.out.println(Arrays.deepToString(map));
     }
 
     private void setCell(int variant, ArrayList<Integer> cellsList) {
