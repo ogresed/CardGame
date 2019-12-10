@@ -68,4 +68,15 @@ public class Field implements FieldConstants {
                 (ver <  MINIMAL_VERTICAL_SIZE || ver > MAXIMAL_VERTICAL_SIZE) ||
                 (differentCards < MINIMAL_DIFFERENT_NUMBER || differentCards > MAXIMAL_DIFFERENT_NUMBER);
     }
+    
+    public boolean setDeletedIfCellsIsEqualAndNotDeleted(int firstX, int firstY, int secondX, int secondY)
+            throws ArrayIndexOutOfBoundsException {
+        boolean cellsIsNotDeleted = (map[firstX][firstY] != DELETED && map[secondX][secondY] != DELETED);
+        boolean isEqual = map[firstX][firstY] == map[secondX][secondY];
+        boolean result = cellsIsNotDeleted && isEqual;
+        if (result) {
+            map[firstX][firstY] = map[secondX][secondY] = DELETED;
+        }
+        return result;
+    }
 }

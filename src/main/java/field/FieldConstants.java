@@ -7,5 +7,5 @@ public interface FieldConstants {
     int MAXIMAL_VERTICAL_SIZE = 12;
     int MINIMAL_DIFFERENT_NUMBER = 5;
     int MAXIMAL_DIFFERENT_NUMBER = 20;
-    int CELL_IS_DELETED = -1;
+    int DELETED = -1;
 }
