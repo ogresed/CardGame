@@ -18,13 +18,14 @@ public class Field implements FieldConstants {
         new Field(4,4,5);
     }
 
-    Field() {
+    public Field() {
         defaultInitialization();
+        createMap();
     }
 
-    Field(int hor, int ver, int differentCards) {
+    public Field(int hor, int ver, int differentCards) {
         if(wrongParameters(hor, ver, differentCards)) {
-            defaultInitialization();
+            throw new WrongParametersException();
         } else {
             horizontal = hor;
             vertical = ver;
@@ -35,26 +36,26 @@ public class Field implements FieldConstants {
 
     private void createMap() {
         map = new int[horizontal][vertical];
-        var variants = new int[numberOfDifferentCards];
+        int[] variants = new int[numberOfDifferentCards];
         for(int i = 0; i < numberOfDifferentCards; i++) {
             variants[i] = i;
         }
         //random filing
-        var cellsList = new ArrayList<Integer>();
+        ArrayList<Integer> cellsList = new ArrayList<>();
         //fill list
         for(int i = 0; i < vertical; i++) {
             for(int j = 0; j < horizontal; j++) {
                 cellsList.add(i * horizontal + j);
             }
         }
-        var random = new Random();
+        Random random = new Random();
         while (!cellsList.isEmpty()) {
             for (int i : variants) {
                 if(cellsList.isEmpty()) {
                     break;
                 }
                 int randomPosition = Math.abs(random.nextInt()) % cellsList.size();
-                var twoIndexesInOneValue = cellsList.get(randomPosition);
+                Integer twoIndexesInOneValue = cellsList.get(randomPosition);
                 map[twoIndexesInOneValue / horizontal][twoIndexesInOneValue % horizontal] = i;
                 cellsList.remove(randomPosition);
             }
