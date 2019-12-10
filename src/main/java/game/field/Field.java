@@ -16,11 +16,10 @@ public class Field implements FieldConstants {
         createMap();
     }
 
-    public Field(int hor, int ver, int differentCards) {
+    private Field(int hor, int ver, int differentCards) {
         if(wrongParameters(hor, ver, differentCards)) {
             throw new WrongParametersException();
         } else {
-            initializationWithAlignment(hor, ver);
             numberOfDifferentCards = differentCards;
         }
         createMap();
@@ -31,17 +30,11 @@ public class Field implements FieldConstants {
     }
 
     private void defaultInitialization() {
-        initializationWithAlignment(MINIMAL_HORIZONTAL_SIZE, MINIMAL_VERTICAL_SIZE);
         numberOfDifferentCards = MINIMAL_DIFFERENT_NUMBER;
     }
 
-    private void initializationWithAlignment(int horizontalSize, int verticalSize) {
-        horizontal = horizontalSize + (horizontalSize % 2);
-        vertical = verticalSize + (verticalSize % 2);
-    }
-
     private void createMap() {
-        map = new int[horizontal][vertical];
+        map = new int[vertical][horizontal];
         int[] variants = new int[numberOfDifferentCards];
         for(int i = 0; i < numberOfDifferentCards; i++) {
             variants[i] = i;
@@ -54,9 +47,6 @@ public class Field implements FieldConstants {
                 cellsList.add(i * horizontal + j);
             }
         }
-        if(cellsList.size() % 2 == 0) {
-            System.out.println("Hoorhaa");
-        }
         while (!cellsList.isEmpty()) {
             for (int i : variants) {
                 if(cellsList.isEmpty()) {
@@ -66,13 +56,12 @@ public class Field implements FieldConstants {
                 setCell(i, cellsList);
             }
         }
-        System.out.println(Arrays.deepToString(map));
     }
 
     private void setCell(int variant, ArrayList<Integer> cellsList) {
         int randomPosition = Math.abs(random.nextInt()) % cellsList.size();
         Integer twoIndexesInOneValue = cellsList.get(randomPosition);
-        map[twoIndexesInOneValue / horizontal][twoIndexesInOneValue % horizontal] = variant;
+        map[twoIndexesInOneValue / vertical][twoIndexesInOneValue % vertical] = variant;
         cellsList.remove(randomPosition);
     }
 

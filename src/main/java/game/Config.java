@@ -1,5 +1,7 @@
 package game;
 
+import java.util.Objects;
+
 public class Config {
      private int horizontal;
     private int vertical;
@@ -11,11 +13,35 @@ public class Config {
         this.differentCards = differentCards;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Config config = (Config) o;
+        return horizontal == config.horizontal &&
+                vertical == config.vertical &&
+                differentCards == config.differentCards;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(horizontal, vertical, differentCards);
+    }
+
+    @Override
+    public String toString() {
+        return "Config{" +
+                "horizontal=" + horizontal +
+                ", vertical=" + vertical +
+                ", differentCards=" + differentCards +
+                '}';
+    }
+
     public int getHorizontal() {
         return horizontal;
     }
 
-    public void setHorizontal(int horizontal) {
+    void setHorizontal(int horizontal) {
         this.horizontal = horizontal;
     }
 
@@ -23,7 +49,7 @@ public class Config {
         return vertical;
     }
 
-    public void setVertical(int vertical) {
+    void setVertical(int vertical) {
         this.vertical = vertical;
     }
 
@@ -31,7 +57,7 @@ public class Config {
         return differentCards;
     }
 
-    public void setDifferentCards(int differentCards) {
+    void setDifferentCards(int differentCards) {
         this.differentCards = differentCards;
     }
 }

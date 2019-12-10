@@ -3,12 +3,11 @@ package game;
 import game.field.*;
 
 public class Game extends GamePrototype {
-    private static final int FIRST_LEVEL = 1;
     private Field field;
     private int level;
 
-    public int getNumberOFLevels() {
-        return numberOfLevels;
+    public int getLastLevel() {
+        return lastLevel;
     }
 
     public Game() {
@@ -38,7 +37,6 @@ public class Game extends GamePrototype {
     }
 
     public static void main(String[] args) {
-        new Game(1);
-
+        new Game(11);
     }
 }
