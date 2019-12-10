@@ -7,16 +7,8 @@ public class Field implements FieldConstants {
     private int vertical;
     private int numberOfDifferentCards;
     private int [][]map;
+    private Random random = new Random();
 
-    private void defaultInitialization() {
-        horizontal = MINIMAL_HORIZONTAL_SIZE;
-        vertical = MINIMAL_VERTICAL_SIZE;
-        numberOfDifferentCards = MINIMAL_DIFFERENT_NUMBER;
-    }
-
-    public static void main(String[] args) {
-        new Field(4,4,5);
-    }
 
     public Field() {
         defaultInitialization();
@@ -27,11 +19,20 @@ public class Field implements FieldConstants {
         if(wrongParameters(hor, ver, differentCards)) {
             throw new WrongParametersException();
         } else {
-            horizontal = hor;
-            vertical = ver;
+            initializationWithAlignment(hor, ver);
             numberOfDifferentCards = differentCards;
         }
         createMap();
+    }
+
+    private void defaultInitialization() {
+        initializationWithAlignment(MINIMAL_HORIZONTAL_SIZE, MINIMAL_VERTICAL_SIZE);
+        numberOfDifferentCards = MINIMAL_DIFFERENT_NUMBER;
+    }
+
+    private void initializationWithAlignment(int horizontalSize, int verticalSize) {
+        horizontal = horizontalSize + (horizontalSize % 2);
+        vertical = verticalSize + (verticalSize % 2);
     }
 
     private void createMap() {
@@ -48,19 +49,25 @@ public class Field implements FieldConstants {
                 cellsList.add(i * horizontal + j);
             }
         }
-        Random random = new Random();
+        if(cellsList.size() % 2 == 0) {
+            System.out.println("Hoorhaa");
+        }
         while (!cellsList.isEmpty()) {
             for (int i : variants) {
                 if(cellsList.isEmpty()) {
                     break;
                 }
-                int randomPosition = Math.abs(random.nextInt()) % cellsList.size();
-                Integer twoIndexesInOneValue = cellsList.get(randomPosition);
-                map[twoIndexesInOneValue / horizontal][twoIndexesInOneValue % horizontal] = i;
-                cellsList.remove(randomPosition);
+                setCell(i, cellsList);
+                setCell(i, cellsList);
             }
         }
-        //System.out.println(Arrays.deepToString(map));
+    }
+
+    private void setCell(int variant, ArrayList<Integer> cellsList) {
+        int randomPosition = Math.abs(random.nextInt()) % cellsList.size();
+        Integer twoIndexesInOneValue = cellsList.get(randomPosition);
+        map[twoIndexesInOneValue / horizontal][twoIndexesInOneValue % horizontal] = variant;
+        cellsList.remove(randomPosition);
     }
 
     private boolean wrongParameters(int hor, int ver, int differentCards) {
