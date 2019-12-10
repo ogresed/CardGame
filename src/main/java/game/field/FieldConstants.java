@@ -1,4 +1,4 @@
-package field;
+package game.field;
 
 public interface FieldConstants {
     int MINIMAL_HORIZONTAL_SIZE = 4;

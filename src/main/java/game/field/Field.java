@@ -1,4 +1,4 @@
-package field;
+package game.field;
 
 import java.util.*;
 
@@ -60,7 +60,7 @@ public class Field implements FieldConstants {
                 cellsList.remove(randomPosition);
             }
         }
-        System.out.println(Arrays.deepToString(map));
+        //System.out.println(Arrays.deepToString(map));
     }
 
     private boolean wrongParameters(int hor, int ver, int differentCards) {
