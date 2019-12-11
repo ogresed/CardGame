@@ -83,12 +83,12 @@ public class Game extends GamePrototype {
      * if cells is deleted return false
      * is cells is in different position but have a same values return true
      * */
-    public boolean toAddPoints(int firstX, int firstY, int secondX, int secondY) {
+    public boolean toAddPoints(int firstY, int firstX, int secondY, int secondX) {
         boolean retValue =  field.setDeletedIfCellsIsEqualAndNotDeleted (
-                firstX,
                 firstY,
-                secondX,
-                secondY
+                firstX,
+                secondY,
+                secondX
         );
         if(retValue) {
             currentLevelPoints += additionPoints();
@@ -106,8 +106,10 @@ public class Game extends GamePrototype {
     public void nextLevel() {
         if(level != lastLevel) {
             globalPoints += currentLevelPoints;
+            currentLevelPoints = 0;
             level++;
-            field = new Field(fromLevelToConfig(level));
+            config = fromLevelToConfig(level);
+            field = new Field(config);
         }
     }
 }

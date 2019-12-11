@@ -32,21 +32,11 @@ class GameTest {
 
     @Test
     void globalGameTest() {
-        String wrongThrowingTest = "wrong";
-        String trueThrowingTest = "true";
-        String expected = trueThrowingTest;
-        try {
-            for (int level = prototype.getFirstLevel(); level < prototype.getLastLevel(); level++) {
-                Game game = new Game(level);
-                pointsValues(game, true, true);
-                cellsAccess(game);
-                nextLevel(game);
-            }
-        } catch (Exception e) {
-            expected = wrongThrowingTest;
-        }
-        finally {
-            assertThat(expected, equalTo(trueThrowingTest));
+        Game game = new Game(1);
+        while (game.getLevel() <= game.getLastLevel() && !game.gameIsOver()) {
+            pointsValues(game, true, game.getLevel() == game.getFirstLevel());
+            cellsAccess(game);
+            nextLevel(game);
         }
     }
 
@@ -81,19 +71,24 @@ class GameTest {
                 checkWithSecondCell(i, j, game);
             }
         }
+
+        pointsValues(game, false, game.getLevel() == game.getFirstLevel());
         assertThat(game.levelIsOver(), equalTo(true));
-        pointsValues(game, false, false);
         game.nextLevel();
-        pointsValues(game, true, false);
-        assertThat(game.gameIsOver(), equalTo(game.getLevel() == game.lastLevel));
+        if(game.getLevel() != game.getLastLevel()) {
+            pointsValues(game, true, false);
+        }
+        if(game.levelIsOver()) {
+            assertThat(game.getLevel(), equalTo( game.lastLevel));
+        }
     }
 
     private void checkWithSecondCell(int y, int x, Game game) {
         Config config = game.getConfig();
-        assertThat(game.toAddPoints(x, y, x, y), equalTo(false));
-        for (int i = y; i < config.getVertical(); i++) {
-            for(int j = x; j < config.getHorizontal(); j++) {
-                game.toAddPoints(x, y, i, j);
+        assertThat(game.toAddPoints(y, x, y, x), equalTo(false));
+        for (int i = 0; i < config.getVertical(); i++) {
+            for(int j = 0; j < config.getHorizontal(); j++) {
+               game.toAddPoints(y, x, i, j);
             }
         }
     }

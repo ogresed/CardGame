@@ -44,7 +44,7 @@ public class Field implements FieldConstants {
     }
 
     private void defaultInit() {
-        init(MINIMAL_HORIZONTAL_SIZE, MINIMAL_VERTICAL_SIZE, MINIMAL_DIFFERENT_NUMBER)
+        init(MINIMAL_HORIZONTAL_SIZE, MINIMAL_VERTICAL_SIZE, MINIMAL_DIFFERENT_NUMBER);
     }
 
     private void createMap() {
@@ -85,13 +85,13 @@ public class Field implements FieldConstants {
                 (differentCards < MINIMAL_DIFFERENT_NUMBER || differentCards > MAXIMAL_DIFFERENT_NUMBER);
     }
     
-    public boolean setDeletedIfCellsIsEqualAndNotDeleted(int firstX, int firstY, int secondX, int secondY) {
-        boolean cellsIsNotDeleted = (map[firstX][firstY] != DELETED && map[secondX][secondY] != DELETED);
-        boolean isEqualAndDifferent = map[firstX][firstY] == map[secondX][secondY] &&
-                firstX != secondX && firstY != secondY;
+    public boolean setDeletedIfCellsIsEqualAndNotDeleted(int firstY, int firstX, int secondY, int secondX) {
+        boolean cellsIsNotDeleted = (map[firstY][firstX] != DELETED && map[secondY][secondX] != DELETED);
+        boolean isEqualAndDifferent = map[firstY][firstX] == map[secondY][secondX] &&
+                !(firstY == secondY && firstX == secondX);
         boolean result = cellsIsNotDeleted && isEqualAndDifferent;
         if (result) {
-            map[firstX][firstY] = map[secondX][secondY] = DELETED;
+            map[firstY][firstX] = map[secondY][secondX] = DELETED;
             numberOfDeleted+=2;
         }
         return result;
