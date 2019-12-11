@@ -9,61 +9,6 @@ public class Game extends GamePrototype {
     private int globalPoints = 0;
     private int currentLevelPoints = 0;
 
-    public int getGlobalPoints() {
-        return globalPoints;
-    }
-
-    public int getCurrentLevelPoints() {
-        return currentLevelPoints;
-    }
-
-    @Override
-    public int getLastLevel() {
-        return lastLevel;
-    }
-
-    public Config getConfig() {
-        return config;
-    }
-
-    public int getCell(int x, int y) {
-        return field.getCell(x, y);
-    }
-
-    public boolean levelIsOver() {
-        return field.getFieldSize() == field.getNumberOfDeleted();
-    }
-
-    public void nextLevel() {
-        globalPoints += currentLevelPoints;
-        level++;
-        field = new Field(fromLevelToConfig(level));
-    }
-
-    public boolean setDeletedIfCellsIsEqualAndNotDeleted(int firstX,
-                                                         int firstY,
-                                                         int secondX,
-                                                         int secondY) {
-        boolean addPoints =  field.setDeletedIfCellsIsEqualAndNotDeleted(
-                firstX,
-                firstY,
-                secondX,
-                secondY
-        );
-        if(addPoints) {
-            currentLevelPoints += addPoints();
-        }
-        return addPoints;
-    }
-
-    public boolean gameIsOver() {
-        return levelIsOver() && level == lastLevel;
-    }
-
-    private int addPoints() {
-        return level;
-    }
-
     public Game() {
         super();
         level = FIRST_LEVEL;
@@ -90,5 +35,79 @@ public class Game extends GamePrototype {
         config = new Config(horizontal, vertical, differentCards);
         level = fromConfigToLevel(config);
         field = new Field(config);
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public int getGlobalPoints() {
+        return globalPoints;
+    }
+
+    public int getCurrentLevelPoints() {
+        return currentLevelPoints;
+    }
+
+    @Override
+    public int getLastLevel() {
+        return lastLevel;
+    }
+
+    public Config getConfig() {
+        return config;
+    }
+
+    public int getCell(int y, int x) {
+        return field.getCell(y, x);
+    }
+
+    public int [] getVariants() {
+        int[] variants = new int[config.getDifferentCards()];
+        for(int i = 0; i < config.getDifferentCards(); i++) {
+            variants[i] = i;
+        }
+        return variants;
+    }
+
+    public boolean levelIsOver() {
+        return field.getFieldSize() == field.getNumberOfDeleted();
+    }
+
+    public boolean gameIsOver() {
+        return levelIsOver() && level == lastLevel;
+    }
+
+    /**
+     * if cells in same position return false
+     * if cells is deleted return false
+     * is cells is in different position but have a same values return true
+     * */
+    public boolean toAddPoints(int firstX, int firstY, int secondX, int secondY) {
+        boolean retValue =  field.setDeletedIfCellsIsEqualAndNotDeleted (
+                firstX,
+                firstY,
+                secondX,
+                secondY
+        );
+        if(retValue) {
+            currentLevelPoints += additionPoints();
+        }
+        return retValue;
+    }
+
+    private int additionPoints() {
+        return level;
+    }
+
+    /**
+     * if level is last nothing to change
+     * */
+    public void nextLevel() {
+        if(level != lastLevel) {
+            globalPoints += currentLevelPoints;
+            level++;
+            field = new Field(fromLevelToConfig(level));
+        }
     }
 }

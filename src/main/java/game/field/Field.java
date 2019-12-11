@@ -13,12 +13,12 @@ public class Field implements FieldConstants {
     private int numberOfDeleted;
     private int fieldSize;
 
-    public int getCell(int x, int y) {
-        return map[x][y];
+    public int getCell(int y, int x) {
+        return map[y][x];
     }
 
     public Field() {
-        defaultInitialization();
+        defaultInit();
         createMap();
     }
 
@@ -26,11 +26,7 @@ public class Field implements FieldConstants {
         if(wrongParameters(hor, ver, differentCards)) {
             throw new WrongParametersException();
         } else {
-            horizontal = hor;
-            vertical = ver;
-            numberOfDifferentCards = differentCards;
-            fieldSize = 0;
-            numberOfDeleted = 0;
+            init(hor, ver, differentCards);
         }
         createMap();
     }
@@ -39,12 +35,16 @@ public class Field implements FieldConstants {
         this(config.getHorizontal(), config.getVertical(), config.getDifferentCards());
     }
 
-    private void defaultInitialization() {
-        horizontal = MINIMAL_HORIZONTAL_SIZE;
-        vertical = MINIMAL_VERTICAL_SIZE;
-        numberOfDifferentCards = MINIMAL_DIFFERENT_NUMBER;
-        fieldSize = 0;
+    private void init(int hor, int ver, int differentCards) {
+        horizontal = hor;
+        vertical = ver;
+        numberOfDifferentCards = differentCards;
+        fieldSize = horizontal * vertical;
         numberOfDeleted = 0;
+    }
+
+    private void defaultInit() {
+        init(MINIMAL_HORIZONTAL_SIZE, MINIMAL_VERTICAL_SIZE, MINIMAL_DIFFERENT_NUMBER)
     }
 
     private void createMap() {
@@ -75,7 +75,7 @@ public class Field implements FieldConstants {
     private void setCell(int variant, ArrayList<Integer> cellsList) {
         int randomPosition = Math.abs(random.nextInt()) % cellsList.size();
         Integer twoIndexesInOneValue = cellsList.get(randomPosition);
-        map[twoIndexesInOneValue / vertical][twoIndexesInOneValue % vertical] = variant;
+        map[twoIndexesInOneValue / horizontal][twoIndexesInOneValue % horizontal] = variant;
         cellsList.remove(randomPosition);
     }
 
@@ -87,8 +87,9 @@ public class Field implements FieldConstants {
     
     public boolean setDeletedIfCellsIsEqualAndNotDeleted(int firstX, int firstY, int secondX, int secondY) {
         boolean cellsIsNotDeleted = (map[firstX][firstY] != DELETED && map[secondX][secondY] != DELETED);
-        boolean isEqual = map[firstX][firstY] == map[secondX][secondY];
-        boolean result = cellsIsNotDeleted && isEqual;
+        boolean isEqualAndDifferent = map[firstX][firstY] == map[secondX][secondY] &&
+                firstX != secondX && firstY != secondY;
+        boolean result = cellsIsNotDeleted && isEqualAndDifferent;
         if (result) {
             map[firstX][firstY] = map[secondX][secondY] = DELETED;
             numberOfDeleted+=2;
