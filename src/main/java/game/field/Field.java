@@ -10,6 +10,12 @@ public class Field implements FieldConstants {
     private int numberOfDifferentCards;
     private int [][]map;
     private Random random = new Random();
+    private int numberOfDeleted;
+    private int fieldSize;
+
+    public int getCell(int x, int y) {
+        return map[x][y];
+    }
 
     public Field() {
         defaultInitialization();
@@ -20,7 +26,11 @@ public class Field implements FieldConstants {
         if(wrongParameters(hor, ver, differentCards)) {
             throw new WrongParametersException();
         } else {
+            horizontal = hor;
+            vertical = ver;
             numberOfDifferentCards = differentCards;
+            fieldSize = 0;
+            numberOfDeleted = 0;
         }
         createMap();
     }
@@ -30,7 +40,11 @@ public class Field implements FieldConstants {
     }
 
     private void defaultInitialization() {
+        horizontal = MINIMAL_HORIZONTAL_SIZE;
+        vertical = MINIMAL_VERTICAL_SIZE;
         numberOfDifferentCards = MINIMAL_DIFFERENT_NUMBER;
+        fieldSize = 0;
+        numberOfDeleted = 0;
     }
 
     private void createMap() {
@@ -77,7 +91,16 @@ public class Field implements FieldConstants {
         boolean result = cellsIsNotDeleted && isEqual;
         if (result) {
             map[firstX][firstY] = map[secondX][secondY] = DELETED;
+            numberOfDeleted+=2;
         }
         return result;
+    }
+
+    public int getNumberOfDeleted() {
+        return numberOfDeleted;
+    }
+
+    public int getFieldSize() {
+        return fieldSize;
     }
 }

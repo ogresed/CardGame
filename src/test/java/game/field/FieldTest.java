@@ -8,6 +8,6 @@ class FieldTest {
 
     @Test
     void setDeletedIfCellsIsEqualAndNotDeleted() {
-
+        assertThat(1,equalTo(1));
     }
 }

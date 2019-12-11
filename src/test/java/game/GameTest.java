@@ -5,7 +5,7 @@ import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
 class GameTest {
-    GamePrototype prototype = new GamePrototype();
+    private GamePrototype prototype = new GamePrototype();
 
     @Test
     void constructors() {
@@ -24,4 +24,6 @@ class GameTest {
         assertThat(prototype.getLastLevel(), equalTo(new Game(1).getLastLevel()));
         assertThat(prototype.getFirstLevel(), equalTo(new Game(1).getFirstLevel()));
     }
+
+
 }

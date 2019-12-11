@@ -1,6 +1,5 @@
 package game;
 
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,10 +10,10 @@ import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
 class GamePrototypeTest {
-    int sizeOfConfigs = 10;
-    GamePrototype prototype = new GamePrototype();
-    Config[] configs = new  Config[sizeOfConfigs];
-    Random random = new Random();
+    private int sizeOfConfigs = 10;
+    private GamePrototype prototype = new GamePrototype();
+    private Config[] configs = new  Config[sizeOfConfigs];
+    private Random random = new Random();
 
     @BeforeEach
     void setUp() {
