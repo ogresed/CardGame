@@ -1,14 +1,15 @@
 package game;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
-class GameTest {
+public class GameTest {
     private GamePrototype prototype = new GamePrototype();
 
     @Test
-    void constructors() {
+    public void constructors() {
         String wrongThrowingTest = "wrong";
         String trueThrowingTest = "true";
         String expected = trueThrowingTest;
@@ -25,13 +26,13 @@ class GameTest {
     }
 
     @Test
-    void lastFirstLevels() {
+    public void lastFirstLevels() {
         assertThat(prototype.getLastLevel(), equalTo(new Game(1).getLastLevel()));
         assertThat(prototype.getFirstLevel(), equalTo(new Game(1).getFirstLevel()));
     }
 
     @Test
-    void globalGameTest() {
+    public void globalGameTest() {
         Game game = new Game(1);
         while (game.getLevel() <= game.getLastLevel() && !game.gameIsOver()) {
             pointsValues(game, true, game.getLevel() == game.getFirstLevel());
@@ -40,7 +41,7 @@ class GameTest {
         }
     }
 
-    void pointsValues(Game game, boolean currentIsNull, boolean globalIsNull) {
+    public void pointsValues(Game game, boolean currentIsNull, boolean globalIsNull) {
         if (currentIsNull) {
             assertThat(game.getCurrentLevelPoints(), equalTo(0));
         } else {
@@ -54,7 +55,7 @@ class GameTest {
 
     }
 
-    void cellsAccess (Game game) {
+    public void cellsAccess (Game game) {
         Config config = game.getConfig();
         for (int i = 0; i < config.getVertical(); i++) {
             for(int j = 0; j < config.getHorizontal(); j++) {
@@ -63,7 +64,7 @@ class GameTest {
         }
     }
 
-    private void nextLevel(Game game) {
+    public void nextLevel(Game game) {
         assertThat(game.levelIsOver(), equalTo(false));
         Config config = game.getConfig();
         for (int i = 0; i < config.getVertical(); i++) {
@@ -83,7 +84,7 @@ class GameTest {
         }
     }
 
-    private void checkWithSecondCell(int y, int x, Game game) {
+    public void checkWithSecondCell(int y, int x, Game game) {
         Config config = game.getConfig();
         assertThat(game.toAddPoints(y, x, y, x), equalTo(false));
         for (int i = 0; i < config.getVertical(); i++) {
