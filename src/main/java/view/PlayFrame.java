@@ -52,7 +52,7 @@ class ImageComponent extends JComponent
         try
         {
             image = ImageIO.read(new File("resources/card_images/6d76bca8aa50fe6b50776d76c5259a22.jpg"));
-            
+
         }
         catch(IOException e)
         {
