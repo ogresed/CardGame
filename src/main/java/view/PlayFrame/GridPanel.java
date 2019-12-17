@@ -1,6 +1,8 @@
 package view.PlayFrame;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
@@ -31,16 +33,18 @@ public class GridPanel extends JPanel {
     public GridPanel()
     {
         setVisible(true);
+        setBorder(new EmptyBorder(0,0,0,0));
+        setLayout(new GridLayout(0,4,0,0));
         addButtons();
     }
 
     private void addButtons()
     {
-        numButtons = pics.length * 2;
+        numButtons = 16;
         buttons = new JButton[numButtons];
         icons = new ImageIcon[numButtons];
 
-        for(int i = 0, j = 0; i < pics.length; i++){
+        for(int i = 0, j = 0; i < 8; i++){
             icons[j] = new ImageIcon(pics[i]);
             buttons[j] = new JButton();
             buttons[j].addActionListener(new ImageButtonListener());
@@ -55,6 +59,12 @@ public class GridPanel extends JPanel {
         }
 
         Random rnd = new Random();
+        for (int i = 0; i < numButtons; i++){
+            int j = rnd.nextInt(numButtons);
+            temp = icons[i];
+            icons[i]= icons[j];
+            icons[j] = temp;
+        }
     }
 
     private class ImageButtonListener implements ActionListener{

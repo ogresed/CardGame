@@ -9,8 +9,7 @@ public class PlayFrame extends MainFrame {
 
     public PlayFrame(){
         super();
-        setSize(700, 600);
-        setResizable(false);
+        setSize(600, 700);
         fieldPanel = new PlayPanel();
         setContentPane(fieldPanel);
 
