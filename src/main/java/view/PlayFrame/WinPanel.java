@@ -1,4 +1,7 @@
 package view.PlayFrame;
 
-public class WinPanel {
+import javax.swing.*;
+
+public class WinPanel extends JPanel {
+    
 }
