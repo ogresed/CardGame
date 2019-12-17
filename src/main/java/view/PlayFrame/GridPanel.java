@@ -29,6 +29,7 @@ public class GridPanel extends JPanel {
     int openImages;
     public int currentIndex;
     public int oddClickIndex;
+    Timer myTimer;
 
     public GridPanel()
     {
@@ -65,14 +66,33 @@ public class GridPanel extends JPanel {
             icons[i]= icons[j];
             icons[j] = temp;
         }
+
+        myTimer = new Timer(1000, new TimerListener());
     }
 
     private class ImageButtonListener implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            if(myTimer.isRunning())
+                return;
+            openImages++;
+            for(int i = 0; i < numButtons; i++){
+                if(e.getSource() == buttons[i]){
+                    buttons[i].setIcon(icons[i]);
+                    currentIndex = i;
+                }
+            }
         }
     }
 
+    private class TimerListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            buttons[currentIndex].setIcon(cardBack);
+            buttons[oddClickIndex].setIcon(cardBack);
+            myTimer.stop();
+        }
+    }
 }
