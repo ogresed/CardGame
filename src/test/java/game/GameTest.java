@@ -86,10 +86,10 @@ public class GameTest {
 
     public void checkWithSecondCell(int y, int x, Game game) {
         Config config = game.getConfig();
-        assertThat(game.toAddPoints(y, x, y, x), equalTo(false));
+        assertThat(game.toAddPoints(x, y, x, y), equalTo(false));
         for (int i = 0; i < config.getVertical(); i++) {
             for(int j = 0; j < config.getHorizontal(); j++) {
-               game.toAddPoints(y, x, i, j);
+               game.toAddPoints(x, y, j, i);
             }
         }
     }

@@ -45,7 +45,7 @@ public class GridPanel extends JPanel {
         buttons = new JButton[numButtons];
         icons = new ImageIcon[numButtons];
 
-        for(int i = 0, j = 0; i < 8; i++){
+        for(int i = 0, j = 0; i < 8; i++) {
             icons[j] = new ImageIcon(pics[i]);
             buttons[j] = new JButton();
             buttons[j].addActionListener(new ImageButtonListener());

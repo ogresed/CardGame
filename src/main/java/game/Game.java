@@ -83,7 +83,7 @@ public class Game extends GamePrototype {
      * if cells is deleted return false
      * is cells is in different position but have a same values return true
      * */
-    public boolean toAddPoints(int firstY, int firstX, int secondY, int secondX) {
+    public boolean toAddPoints(int firstX, int firstY, int secondX, int secondY) {
         boolean retValue =  field.setDeletedIfCellsIsEqualAndNotDeleted (
                 firstY,
                 firstX,
