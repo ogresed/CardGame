@@ -1,5 +1,7 @@
 package view;
 
+import view.PlayFrame.PlayFrame;
+
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
 import java.awt.*;
@@ -27,6 +29,7 @@ public class MainMenu extends MainFrame{
 
     void CreateButtons(){
         playButton = new JButton(new ImageIcon("resources/icons/play.jpg") );
+        playButton.addActionListener(e -> playFrame.Play());
         saveButton = new JButton(new ImageIcon("resources/icons/save.jpg") );
         loadButton = new JButton(new ImageIcon("resources/icons/load.jpg") );
         topButton = new JButton(new ImageIcon("resources/icons/top.jpg") );
@@ -61,4 +64,6 @@ public class MainMenu extends MainFrame{
     private JButton topButton;
     private JPanel menuPanel;
     private int borderSize = 100;
+
+    private PlayFrame playFrame = new PlayFrame();
 }

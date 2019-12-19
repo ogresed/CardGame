@@ -13,7 +13,7 @@ class GamePrototype {
     final int lastLevel;
     private HashMap<Integer, Config> levelsMap;
 
-    GamePrototype()  {
+    GamePrototype() {
         maxDifficult = MAXIMAL_HORIZONTAL_SIZE * MAXIMAL_VERTICAL_SIZE * MAXIMAL_DIFFERENT_NUMBER;
         minDifficult = MINIMAL_HORIZONTAL_SIZE * MINIMAL_VERTICAL_SIZE * MINIMAL_DIFFERENT_NUMBER;
         shift = shiftCount();
