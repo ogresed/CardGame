@@ -109,7 +109,12 @@ public class GridPanel extends JPanel {
                     ScorePanel.points.setText(Integer.toString(game.getGlobalPoints() + game.getCurrentLevelPoints()));
                     //проверка на gameOver вместо false
                     if(game.levelIsOver()) {
-
+                        //setVisible(false);
+                        game.nextLevel();
+                        config = game.getConfig();
+                        removeButtons();
+                        addButtons();
+                        repaint();
                     }
                 }
             } else {
@@ -118,7 +123,10 @@ public class GridPanel extends JPanel {
         }
     }
 
-   
+    private void removeButtons() {
+        removeAll();
+    }
+
     private class TimerListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
