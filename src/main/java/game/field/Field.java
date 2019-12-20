@@ -4,7 +4,7 @@ import game.Config;
 
 import java.util.*;
 
-public class Field implements FieldConstants {
+public class Field extends FieldConstants {
     private int horizontal;
     private int vertical;
     private int numberOfDifferentCards;
@@ -18,6 +18,7 @@ public class Field implements FieldConstants {
     }
 
     public Field() {
+        super();
         defaultInit();
         createMap();
     }
