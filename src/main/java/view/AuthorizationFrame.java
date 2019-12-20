@@ -14,12 +14,13 @@ public class AuthorizationFrame extends MainFrame{
     private JTextField textField;
     private JLabel label = new JLabel("                Hello, please, enter your name");
     private String name;
-    private int borderSize = 30;
+    private int borderSize = 80;
 
     AuthorizationFrame(){
         super();
         setLayout(new BorderLayout(3,3));
-        setSize(400, 200);
+        setSize(450, 300);
+        setResizable(false);
         addButton();
 
         AddBackground();

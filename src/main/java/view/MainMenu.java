@@ -27,7 +27,7 @@ public class MainMenu extends MainFrame{
 
     void CreateButtons(){
         playButton = new JButton(new ImageIcon("resources/icons/play.jpg") );
-        playButton.addActionListener(e -> authorizationFrame.Authorise());
+        playButton.addActionListener(e -> Authorise());
         saveButton = new JButton(new ImageIcon("resources/icons/save.jpg") );
         saveButton.addActionListener(e -> saveFrame.showSaveFrame());
         loadButton = new JButton(new ImageIcon("resources/icons/load.jpg") );
@@ -40,6 +40,11 @@ public class MainMenu extends MainFrame{
         menuPanel = new JPanel();
         menuPanel.setLayout(new GridLayout(5, 1));
         AddBackground();
+    }
+
+    void Authorise(){
+        authorizationFrame.Authorise();
+        setVisible(false);
     }
 
     void AddPanels(){
