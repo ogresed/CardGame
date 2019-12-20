@@ -6,6 +6,11 @@ import java.awt.*;
 
 public class ScorePanel extends JPanel {
     JLabel score;
+
+    static public JLabel getPoints() {
+        return points;
+    }
+
     static JLabel points;
 
     ScorePanel(){

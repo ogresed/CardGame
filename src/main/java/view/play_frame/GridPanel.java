@@ -24,7 +24,7 @@ public class GridPanel extends JPanel {
             "resources/card_images/kisspng-tiger-cartoon-clip-art-enfant-5ac9d2ca81c289.3685579815231761385315.jpg",
             "resources/card_images/s1200.jpg"};
 
-    private JButton[] buttons;
+    static JButton[] buttons;
     ImageIcon cardBack = new ImageIcon("resources/backgrounds/375666.jpg");
     ImageIcon[] icons;
 
@@ -108,7 +108,8 @@ public class GridPanel extends JPanel {
                     //метод из game в случае двух клеток с одинаковыми картинками
                     //прибавить текущий счетчик очков
                     //вместо 1 вернуть текущий счетчик очков из game
-                    ScorePanel.points.setText(Integer.toString(game.getGlobalPoints() + game.getCurrentLevelPoints()));
+                    ScorePanel.getPoints().setText(Integer.toString(
+                            game.getGlobalPoints() + game.getCurrentLevelPoints()));
                     //проверка на gameOver вместо false
                     if(game.levelIsOver()) {
                         game.nextLevel();
