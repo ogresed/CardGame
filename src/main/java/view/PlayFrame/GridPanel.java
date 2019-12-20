@@ -30,9 +30,9 @@ public class GridPanel extends JPanel {
     ImageIcon[] icons;
 
     int openImages;
-    public int currentIndex;
-    public int oddClickIndex;
-    public int numClicks;
+    private int currentIndex;
+    private int oddClickIndex;
+    private int numClicks;
 
     Timer myTimer;
     Game game;
