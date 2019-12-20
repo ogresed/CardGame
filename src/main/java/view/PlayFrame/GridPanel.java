@@ -1,5 +1,7 @@
 package view.PlayFrame;
 
+import game.Game;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -24,47 +26,40 @@ public class GridPanel extends JPanel {
     static JButton[] buttons;
     ImageIcon cardBack = new ImageIcon("resources/backgrounds/375666.jpg");
     ImageIcon[] icons;
-    private ImageIcon temp;
-    private boolean gameOver;
+
     int openImages;
     public int currentIndex;
     public int oddClickIndex;
+    public int numClicks;
+
     Timer myTimer;
+    Game game;
 
     public GridPanel()
     {
+        //вызвать конструктор game
         setVisible(true);
+        //получить размеры поля
         setBorder(new EmptyBorder(0,0,0,0));
-        setLayout(new GridLayout(0,4,0,0));
+        setLayout(new GridLayout(4,3,0,0));//записать вместо 4 длину и ширину поля
         addButtons();
     }
 
     private void addButtons()
     {
-        numButtons = 16;
+        numButtons = 16;//вместо 16 длина поля*ширина поля
+        int sizeY = 4;//вместо 4 получить высоту поля
+        int sizeX = 3;//вместо 4 получить ширину поля
         buttons = new JButton[numButtons];
         icons = new ImageIcon[numButtons];
 
-        for(int i = 0, j = 0; i < 8; i++) {
-            icons[j] = new ImageIcon(pics[i]);
-            buttons[j] = new JButton();
-            buttons[j].addActionListener(new ImageButtonListener());
-            buttons[j].setIcon(cardBack);
-            add(buttons[j++]);
-
-            icons[j] = icons[j-1];
-            buttons[j] = new JButton();
-            buttons[j].setIcon(cardBack);
-            buttons[j].addActionListener(new ImageButtonListener());
-            add(buttons[j++]);
-        }
-
-        Random rnd = new Random();
-        for (int i = 0; i < numButtons; i++){
-            int j = rnd.nextInt(numButtons);
-            temp = icons[i];
-            icons[i]= icons[j];
-            icons[j] = temp;
+        for(int i = 0; i < sizeY; i++)
+            for(int j = 0; j < sizeX; j++){
+            icons[i*sizeY + j] = new ImageIcon(pics[i]);//вместо i получить номер картинки для клетки с координатами j,i в pics[i]
+            buttons[i*sizeY + j] = new JButton();
+            buttons[i*sizeY + j].addActionListener(new ImageButtonListener());
+            buttons[i*sizeY + j].setIcon(cardBack);
+            add(buttons[i*sizeY + j]);
         }
 
         myTimer = new Timer(1000, new TimerListener());
@@ -82,6 +77,27 @@ public class GridPanel extends JPanel {
                     buttons[i].setIcon(icons[i]);
                     currentIndex = i;
                 }
+            }
+
+            if(openImages % 2 == 0){
+                if(currentIndex == oddClickIndex){
+                    numClicks--;
+                    return;
+                }
+
+                if(icons[currentIndex] != icons[oddClickIndex]){
+                    myTimer.start();
+                    //метод из game в случае двух клеток с разными картинками
+                } else{
+                    //метод из game в случае двух клеток с одинаковыми картинками
+                    //прибавить текущий счетчик очков
+                    ScorePanel.points.setText(Integer.toString(1));//вместо 1 вернуть текущий счетчик очков из game
+                    if(false){//проверка на gameOver вместо false
+                        setVisible(false);
+                    }
+                }
+            } else {
+                oddClickIndex = currentIndex;
             }
         }
     }
