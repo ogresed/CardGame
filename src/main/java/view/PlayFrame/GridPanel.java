@@ -26,11 +26,12 @@ public class GridPanel extends JPanel {
     static JButton[] buttons;
     ImageIcon cardBack = new ImageIcon("resources/backgrounds/375666.jpg");
     ImageIcon[] icons;
-    private ImageIcon temp;
-    private boolean gameOver;
+
     int openImages;
     public int currentIndex;
     public int oddClickIndex;
+    public int numClicks;
+
     Timer myTimer;
     Game game;
 
@@ -75,6 +76,23 @@ public class GridPanel extends JPanel {
                 if(e.getSource() == buttons[i]){
                     buttons[i].setIcon(icons[i]);
                     currentIndex = i;
+                }
+            }
+
+            if(openImages % 2 == 0){
+                if(currentIndex == oddClickIndex){
+                    numClicks--;
+                    return;
+                }
+
+                if(icons[currentIndex] != icons[oddClickIndex]){
+                    myTimer.start();
+                    //метод из game в случае двух клеток с разными картинками
+                } else{
+                    //метод из game в случае двух клеток с одинаковыми картинками
+                    if(false){//проверка на gameOver вместо false
+                        setVisible(false);
+                    }
                 }
             }
         }
