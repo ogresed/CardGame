@@ -59,7 +59,7 @@ public class GameTest {
         Config config = game.getConfig();
         for (int i = 0; i < config.getVertical(); i++) {
             for(int j = 0; j < config.getHorizontal(); j++) {
-                assertThat(game.getCell(i, j), greaterThan(-1));
+                assertThat(game.getCell(j, i), greaterThan(-1));
             }
         }
     }
