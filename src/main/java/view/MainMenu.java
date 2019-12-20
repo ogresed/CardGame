@@ -29,7 +29,7 @@ public class MainMenu extends MainFrame{
 
     void CreateButtons(){
         playButton = new JButton(new ImageIcon("resources/icons/play.jpg") );
-        playButton.addActionListener(e -> playFrame.Play());
+        playButton.addActionListener(e -> authorizationFrame.Authorise());
         saveButton = new JButton(new ImageIcon("resources/icons/save.jpg") );
         saveButton.addActionListener(e -> saveFrame.showSaveFrame());
         loadButton = new JButton(new ImageIcon("resources/icons/load.jpg") );
@@ -66,6 +66,6 @@ public class MainMenu extends MainFrame{
     private JPanel menuPanel;
     private int borderSize = 100;
 
-    private PlayFrame playFrame = new PlayFrame();
+    private AuthorizationFrame authorizationFrame = new AuthorizationFrame();
     private SaveFrame saveFrame = new SaveFrame();
 }
