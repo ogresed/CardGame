@@ -28,30 +28,15 @@ public class Config {
         return Objects.hash(horizontal, vertical, differentCards);
     }
 
-    @Override
-    public String toString() {
-        return "Config{" +
-                "horizontal=" + horizontal +
-                ", vertical=" + vertical +
-                ", differentCards=" + differentCards +
-                '}';
-    }
-
     public int getHorizontal() {
         return horizontal;
     }
 
-    void setHorizontal(int horizontal) {
-        this.horizontal = horizontal;
-    }
 
     public int getVertical() {
         return vertical;
     }
 
-    void setVertical(int vertical) {
-        this.vertical = vertical;
-    }
 
     public int getDifferentCards() {
         return differentCards;
