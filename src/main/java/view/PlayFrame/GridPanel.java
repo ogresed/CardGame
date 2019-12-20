@@ -90,10 +90,13 @@ public class GridPanel extends JPanel {
                     //метод из game в случае двух клеток с разными картинками
                 } else{
                     //метод из game в случае двух клеток с одинаковыми картинками
+                    //прибавить текущий счетчик очков
                     if(false){//проверка на gameOver вместо false
                         setVisible(false);
                     }
                 }
+            } else {
+                oddClickIndex = currentIndex;
             }
         }
     }
