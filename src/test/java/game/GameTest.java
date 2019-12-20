@@ -9,6 +9,23 @@ public class GameTest {
     private GamePrototype prototype = new GamePrototype();
 
     @Test
+    public void otherConstructors() {
+        int hor = 6;
+        int ver = 12;
+        int diff = 9;
+        Game game;
+        game = new Game(new Config(hor, ver, diff));
+        assertThat(game.getLevel(), greaterThan(0));
+        assertThat(game.getLevel(), lessThan(21));
+        assertThat(game.getVariants().length, not(0));
+
+        game = new Game(hor, ver, diff);
+        assertThat(game.getLevel(), greaterThan(0));
+        assertThat(game.getLevel(), lessThan(21));
+        assertThat(game.getVariants().length, not(0));
+    }
+
+    @Test
     public void constructors() {
         String wrongThrowingTest = "wrong";
         String trueThrowingTest = "true";
