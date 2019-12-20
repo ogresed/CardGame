@@ -8,7 +8,7 @@ public class Main extends MainMenu {
         new Main();
     }
 
-    Main(){
+    public Main(){
         super();
     }
 }

@@ -1,5 +1,7 @@
 package game;
 
+import game.field.WrongParametersException;
+
 import java.util.HashMap;
 
 import static game.field.FieldConstants.*;
@@ -72,11 +74,8 @@ class GamePrototype {
     }
 
     Config fromLevelToConfig(int level) {
-        if(level > numberOfLevels) {
-            level = numberOfLevels;
-        }
-        if(level < FIRST_LEVEL) {
-            level = FIRST_LEVEL;
+        if(level > numberOfLevels + 1 || level < FIRST_LEVEL) {
+            throw new WrongParametersException();
         }
         return levelsMap.get(level);
     }

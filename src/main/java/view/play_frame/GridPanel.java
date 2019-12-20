@@ -39,10 +39,10 @@ public class GridPanel extends JPanel {
     int sizeY;
     int sizeX;
 
-    public GridPanel()
+    public GridPanel(int startLevel)
     {
         //вызвать конструктор game
-        game = new Game(2);
+        game = new Game(startLevel);
         setVisible(true);
         //получить размеры поля
         config = game.getConfig();

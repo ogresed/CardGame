@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.lang.reflect.Method;
 import java.security.InvalidParameterException;
 
-
 public class MainFrame extends JFrame{
 
     private static final long serialVersionUID = 1L;
@@ -19,8 +18,7 @@ public class MainFrame extends JFrame{
         {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
         }
-        catch(Exception ignored)
-        {
+        catch(Exception ignored) {
         }
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         menuBar = new JMenuBar();

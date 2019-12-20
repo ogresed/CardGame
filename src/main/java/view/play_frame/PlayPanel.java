@@ -4,13 +4,14 @@ import javax.swing.*;
 import java.awt.*;
 
 public class PlayPanel extends JPanel {
+    public static int startLevel = 3;
     private GridPanel gridPanel;
     private WinPanel winPanel;
     private ScorePanel scorePanel;
 
     public  PlayPanel(){
         setLayout(new BorderLayout(2,2));
-        gridPanel = new GridPanel();
+        gridPanel = new GridPanel(startLevel);
         add(gridPanel, BorderLayout.CENTER);
 
         scorePanel = new ScorePanel();

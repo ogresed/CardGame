@@ -32,11 +32,9 @@ public class Config {
         return horizontal;
     }
 
-
     public int getVertical() {
         return vertical;
     }
-
 
     public int getDifferentCards() {
         return differentCards;
