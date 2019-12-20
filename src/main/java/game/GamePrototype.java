@@ -39,10 +39,8 @@ class GamePrototype {
             }
             Config current = new Config(horizontal, vertical, differentCards);
 
-            if(previous.equals(current)) {
-                if(current.getDifferentCards() < MAXIMAL_DIFFERENT_NUMBER) {
-                    current.setDifferentCards(current.getDifferentCards() + 1);
-                }
+            if(previous.equals(current) && current.getDifferentCards() < MAXIMAL_DIFFERENT_NUMBER) {
+                current.setDifferentCards(current.getDifferentCards() + 1);
             }
             map.put(level, current);
             previous = current;
@@ -52,19 +50,15 @@ class GamePrototype {
 
     private int shiftCount() {
         int minimalNumberOfPairs = MINIMAL_HORIZONTAL_SIZE * MINIMAL_VERTICAL_SIZE / 2;
-        int shift = MINIMAL_HORIZONTAL_SIZE * MINIMAL_VERTICAL_SIZE *(MAXIMAL_DIFFERENT_NUMBER - minimalNumberOfPairs);
-        //System.out.println(shift);
-        return shift;
+        return MINIMAL_HORIZONTAL_SIZE * MINIMAL_VERTICAL_SIZE *(MAXIMAL_DIFFERENT_NUMBER
+                - minimalNumberOfPairs);
     }
 
     private int countNumberOfLevels() {
-        int levels = 0;
+        int levels;
         levels = (maxDifficult - minDifficult) /
         //_____________________________________________
                                 shift;
-        /*System.out.println(levels );
-        System.out.println(maxDifficult);
-        System.out.println(minDifficult);*/
         return levels;
     }
 
