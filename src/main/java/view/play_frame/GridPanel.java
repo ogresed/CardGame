@@ -41,30 +41,27 @@ public class GridPanel extends JPanel {
 
     public GridPanel()
     {
-        //вызвать конструктор game
         game = new Game(2);
         setVisible(true);
         //получить размеры поля
         config = game.getConfig();
         setBorder(new EmptyBorder(0,0,0,0));
-        //записать вместо 4 длину и ширину поля
         addButtons();
     }
 
     private void addButtons()
     {
-        sizeY = config.getVertical();//вместо 4  получить высоту поля
-        sizeX = config.getHorizontal();//вместо 4 получить ширину поля
+        sizeY = config.getVertical();
+        sizeX = config.getHorizontal();
         System.out.println(sizeX + " " + sizeY);
         setLayout(new GridLayout(sizeY, sizeX));
-        numButtons = sizeX * sizeY;//вместо 16 длина поля*ширина поля
+        numButtons = sizeX * sizeY;
         buttons = new JButton[numButtons];
         icons = new ImageIcon[numButtons];
 
         for(int i = 0; i < sizeY; i++)
             for(int j = 0; j < sizeX; j++){
                 int cellValue = game.getCell(j, i);
-                //вместо i получить номер картинки для клетки с координатами j,i в pics[i]
                 int index = i*sizeX + j;
                 icons[index] = new ImageIcon(pics[cellValue]);
                 buttons[index] = new JButton();
@@ -103,14 +100,13 @@ public class GridPanel extends JPanel {
                 int sy = oddClickIndex / sizeX;
                 if(!game.toAddPoints(fx, fy, sx, sy)) {
                     myTimer.start();
-                    //метод из game в случае двух клеток с разными картинками
                 } else {
                     //метод из game в случае двух клеток с одинаковыми картинками
                     //прибавить текущий счетчик очков
-                    //вместо 1 вернуть текущий счетчик очков из game
+                    // вернуть текущий счетчик очков из game
                     ScorePanel.getPoints().setText(Integer.toString(
                             game.getGlobalPoints() + game.getCurrentLevelPoints()));
-                    //проверка на gameOver вместо false
+                    //проверка на gameOver
                     if(game.levelIsOver()) {
                         game.nextLevel();
                         config = game.getConfig();
