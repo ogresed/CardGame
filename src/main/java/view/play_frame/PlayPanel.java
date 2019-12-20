@@ -4,7 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 
 public class PlayPanel extends JPanel {
-    public static int startLevel = 3;
+    public static void setStartLevel(int startLevel) {
+        PlayPanel.startLevel = startLevel;
+    }
+
+    private static int startLevel = 3;
     private GridPanel gridPanel;
     private WinPanel winPanel;
     private ScorePanel scorePanel;
