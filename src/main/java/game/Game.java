@@ -58,7 +58,7 @@ public class Game extends GamePrototype {
         return config;
     }
 
-    public int getCell(int y, int x) {
+    public int getCell(int x, int y) {
         return field.getCell(y, x);
     }
 
