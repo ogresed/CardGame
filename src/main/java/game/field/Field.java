@@ -73,7 +73,9 @@ public class Field implements FieldConstants {
     }
 
     private void setCell(int variant, ArrayList<Integer> cellsList) {
-        int randomPosition = Math.abs(random.nextInt()) % cellsList.size();
+        int randPos = random.nextInt();
+        randPos = Math.abs(randPos);
+        int randomPosition = randPos % cellsList.size();
         Integer twoIndexesInOneValue = cellsList.get(randomPosition);
         map[twoIndexesInOneValue / horizontal][twoIndexesInOneValue % horizontal] = variant;
         cellsList.remove(randomPosition);
