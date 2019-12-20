@@ -41,7 +41,7 @@ public class GridPanel extends JPanel {
         setVisible(true);
         //получить размеры поля
         setBorder(new EmptyBorder(0,0,0,0));
-        setLayout(new GridLayout(4,4,0,0));//записать вместо 4 длину и ширину поля
+        setLayout(new GridLayout(4,3,0,0));//записать вместо 4 длину и ширину поля
         addButtons();
     }
 

@@ -10,13 +10,14 @@ public class ScorePanel extends JPanel {
 
     ScorePanel(){
         score = new JLabel("Score");
-        points = new JLabel("");
+        points = new JLabel(" 0 ");
         setBorder(new EmptyBorder(0,0,0,0));
-        setLayout(new GridLayout(0,1,0,0));
-        setBackground(Color.CYAN);
-        setVisible(true);
+        setLayout(new GridLayout(2,1,0,0));
 
         add(score);
+        add(points);
+        setVisible(true);
+
         validate();
         repaint();
     }
