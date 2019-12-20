@@ -1,7 +1,5 @@
 package view;
 
-import view.play_frame.PlayFrame;
-
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
 import java.awt.*;

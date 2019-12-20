@@ -3,6 +3,7 @@ package view;
 import view.play_frame.PlayFrame;
 
 import javax.swing.*;
+import javax.swing.border.MatteBorder;
 import java.awt.*;
 
 public class AuthorizationFrame extends MainFrame{
@@ -13,6 +14,7 @@ public class AuthorizationFrame extends MainFrame{
     private JTextField textField;
     private JLabel label = new JLabel("                Hello, please, enter your name");
     private String name;
+    private int borderSize = 30;
 
     AuthorizationFrame(){
         super();
@@ -20,9 +22,8 @@ public class AuthorizationFrame extends MainFrame{
         setSize(400, 200);
         addButton();
 
-        add(panel, BorderLayout.SOUTH);createTextArea();
-        add(textField, BorderLayout.CENTER);
-        add(label, BorderLayout.NORTH);
+        AddBackground();
+        add(panel);
 
         setVisible(false);
     }
@@ -40,6 +41,10 @@ public class AuthorizationFrame extends MainFrame{
 
     private void createPanel(){
         panel = new JPanel();
+        panel.setLayout(new GridLayout(3, 1));
+        createTextArea();
+        panel.add(label);
+        panel.add(textField);
     }
 
     private void onPlay(){
@@ -52,5 +57,9 @@ public class AuthorizationFrame extends MainFrame{
 
     private void createTextArea(){
         textField = new JTextField();
+    }
+
+    void AddBackground(){
+        panel.setBorder(new MatteBorder(borderSize,borderSize,borderSize,borderSize, new ImageIcon("resources/backgrounds/MXep.gif")));
     }
 }

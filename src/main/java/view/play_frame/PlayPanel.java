@@ -10,7 +10,6 @@ public class PlayPanel extends JPanel {
 
     private static int startLevel = 3;
     private GridPanel gridPanel;
-    private WinPanel winPanel;
     private ScorePanel scorePanel;
 
     public  PlayPanel(){
