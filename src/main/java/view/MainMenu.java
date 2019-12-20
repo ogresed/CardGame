@@ -31,6 +31,7 @@ public class MainMenu extends MainFrame{
         playButton = new JButton(new ImageIcon("resources/icons/play.jpg") );
         playButton.addActionListener(e -> playFrame.Play());
         saveButton = new JButton(new ImageIcon("resources/icons/save.jpg") );
+        saveButton.addActionListener(e -> saveFrame.showSaveFrame());
         loadButton = new JButton(new ImageIcon("resources/icons/load.jpg") );
         topButton = new JButton(new ImageIcon("resources/icons/top.jpg") );
         exitButton = new JButton(new ImageIcon("resources/icons/exit.jpg") );
@@ -66,4 +67,5 @@ public class MainMenu extends MainFrame{
     private int borderSize = 100;
 
     private PlayFrame playFrame = new PlayFrame();
+    private SaveFrame saveFrame = new SaveFrame();
 }
