@@ -43,7 +43,7 @@ public class GridPanel extends JPanel {
     public GridPanel()
     {
         //вызвать конструктор game
-        game = new Game(1);
+        game = new Game(2);
         setVisible(true);
         //получить размеры поля
         config = game.getConfig();
@@ -66,11 +66,13 @@ public class GridPanel extends JPanel {
             for(int j = 0; j < sizeX; j++){
                 int cellValue = game.getCell(j, i);
                 //вместо i получить номер картинки для клетки с координатами j,i в pics[i]
-            icons[i*sizeY + j] = new ImageIcon(pics[cellValue]);
-            buttons[i*sizeY + j] = new JButton();
-            buttons[i*sizeY + j].addActionListener(new ImageButtonListener());
-            buttons[i*sizeY + j].setIcon(cardBack);
-            add(buttons[i*sizeY + j]);
+                int index = i*sizeX + j;
+                icons[index] = new ImageIcon(pics[cellValue]);
+                buttons[index] = new JButton();
+                buttons[index].addActionListener(new ImageButtonListener());
+                buttons[index].setIcon(cardBack);
+                add(buttons[index]);
+
         }
 
         myTimer = new Timer(1000, new TimerListener());
