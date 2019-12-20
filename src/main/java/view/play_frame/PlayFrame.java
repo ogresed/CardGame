@@ -1,4 +1,4 @@
-package view.PlayFrame;
+package view.play_frame;
 
 import view.MainFrame;
 

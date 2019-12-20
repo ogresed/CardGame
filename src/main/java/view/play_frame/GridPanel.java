@@ -1,4 +1,4 @@
-package view.PlayFrame;
+package view.play_frame;
 
 import game.Game;
 import game.Config;
@@ -8,12 +8,11 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Random;
 
 public class GridPanel extends JPanel {
 
     int numButtons;
-    static String pics[] = {
+    static String[] pics = {
             "resources/card_images/6d76bca8aa50fe6b50776d76c5259a22.jpg",
             "resources/card_images/18-187597_koala-bearsteddy-bearscute-cliparttatty-panda-bear-cartoon-cute.jpg",
             "resources/card_images/281b3d600f48ab1a98a5f47c3feed338.jpg",
@@ -25,7 +24,7 @@ public class GridPanel extends JPanel {
             "resources/card_images/kisspng-tiger-cartoon-clip-art-enfant-5ac9d2ca81c289.3685579815231761385315.jpg",
             "resources/card_images/s1200.jpg"};
 
-    static JButton[] buttons;
+    private JButton[] buttons;
     ImageIcon cardBack = new ImageIcon("resources/backgrounds/375666.jpg");
     ImageIcon[] icons;
 
@@ -35,8 +34,8 @@ public class GridPanel extends JPanel {
     private int numClicks;
 
     Timer myTimer;
-    Game game;
-    Config config;
+    private Game game;
+    private Config config;
     int sizeY;
     int sizeX;
 
@@ -112,7 +111,6 @@ public class GridPanel extends JPanel {
                     ScorePanel.points.setText(Integer.toString(game.getGlobalPoints() + game.getCurrentLevelPoints()));
                     //проверка на gameOver вместо false
                     if(game.levelIsOver()) {
-                        //setVisible(false);
                         game.nextLevel();
                         config = game.getConfig();
                         removeButtons();
