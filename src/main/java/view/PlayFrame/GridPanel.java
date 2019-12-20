@@ -89,6 +89,7 @@ public class GridPanel extends JPanel {
                 if(e.getSource() == buttons[i]){
                     buttons[i].setIcon(icons[i]);
                     currentIndex = i;
+                    break;
                 }
             }
 
@@ -98,9 +99,9 @@ public class GridPanel extends JPanel {
                     return;
                 }
                 int fx = currentIndex % sizeX;
-                int fy = currentIndex / sizeY;
+                int fy = currentIndex / sizeX;
                 int sx = oddClickIndex % sizeX;
-                int sy = oddClickIndex / sizeY;
+                int sy = oddClickIndex / sizeX;
                 if(!game.toAddPoints(fx, fy, sx, sy)) {
                     myTimer.start();
                     //метод из game в случае двух клеток с разными картинками
