@@ -91,6 +91,7 @@ public class GridPanel extends JPanel {
                 } else{
                     //метод из game в случае двух клеток с одинаковыми картинками
                     //прибавить текущий счетчик очков
+                    ScorePanel.points.setText(Integer.toString(1));//вместо 1 вернуть текущий счетчик очков из game
                     if(false){//проверка на gameOver вместо false
                         setVisible(false);
                     }
