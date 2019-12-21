@@ -36,9 +36,20 @@ class GridPanel extends JPanel {
     private transient Game game;
     private transient Config config;
     private int sizeX;
+    private ScorePanel scorePanel;
 
-    GridPanel(int startLevel)
+    private static void createButtons(int numButtons, int sizeX, int sizeY) {
+        buttons = new JButton[numButtons];
+        for(int i = 0; i < sizeY; i++)
+            for(int j = 0; j < sizeX; j++){
+                int index = i*sizeX + j;
+                buttons[index] = new JButton();
+            }
+    }
+
+    GridPanel(int startLevel, ScorePanel scorePanel)
     {
+        this.scorePanel = scorePanel;
         //вызвать конструктор game
         game = new Game(startLevel);
         setVisible(true);
@@ -52,10 +63,9 @@ class GridPanel extends JPanel {
     {
         int sizeY = config.getVertical();
         sizeX = config.getHorizontal();
-        System.out.println(sizeX + " " + sizeY);
         setLayout(new GridLayout(sizeY, sizeX));
         numButtons = sizeX * sizeY;
-        buttons = new JButton[numButtons];
+        createButtons(numButtons, sizeX, sizeY);
         icons = new ImageIcon[numButtons];
 
         for(int i = 0; i < sizeY; i++)
@@ -63,11 +73,9 @@ class GridPanel extends JPanel {
                 int cellValue = game.getCell(j, i);
                 int index = i*sizeX + j;
                 icons[index] = new ImageIcon(pics[cellValue]);
-                buttons[index] = new JButton();
                 buttons[index].addActionListener(new ImageButtonListener());
                 buttons[index].setIcon(cardBack);
                 add(buttons[index]);
-
         }
 
         myTimer = new Timer(1000, new TimerListener());
@@ -102,7 +110,7 @@ class GridPanel extends JPanel {
                     //метод из game в случае двух клеток с одинаковыми картинками
                     //прибавить текущий счетчик очков
                     // вернуть текущий счетчик очков из game
-                    ScorePanel.getPoints().setText(Integer.toString(
+                    scorePanel.getPoints().setText(Integer.toString(
                             game.getGlobalPoints() + game.getCurrentLevelPoints()));
                     //проверка на gameOver
                     if(game.levelIsOver()) {

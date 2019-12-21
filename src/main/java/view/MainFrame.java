@@ -12,7 +12,8 @@ public class MainFrame extends JFrame{
         {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
         }
-        catch(Exception ignored) {
+        catch(Exception e) {
+            e.getMessage();
         }
         setDefaultCloseOperation(EXIT_ON_CLOSE);
        JMenuBar menuBar = new JMenuBar();

@@ -12,10 +12,9 @@ class PlayPanel extends JPanel {
 
     PlayPanel(){
         setLayout(new BorderLayout(2,2));
-        GridPanel gridPanel = new GridPanel(startLevel);
-        add(gridPanel, BorderLayout.CENTER);
-
         ScorePanel scorePanel = new ScorePanel();
         add(scorePanel, BorderLayout.SOUTH);
+        GridPanel gridPanel = new GridPanel(startLevel, scorePanel);
+        add(gridPanel, BorderLayout.CENTER);
     }
 }
