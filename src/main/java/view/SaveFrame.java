@@ -1,8 +1,8 @@
 package view;
 
-class SaveFrame extends MainFrame {
+public class SaveFrame extends MainFrame {
 
-    SaveFrame(){
+    public SaveFrame(){
         super();
         setSize(700, 600);
 

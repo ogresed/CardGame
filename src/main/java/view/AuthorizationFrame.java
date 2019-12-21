@@ -6,7 +6,7 @@ import javax.swing.*;
 import javax.swing.border.MatteBorder;
 import java.awt.*;
 
-class AuthorizationFrame extends MainFrame{
+public class AuthorizationFrame extends MainFrame{
 
     private PlayFrame playFrame = new PlayFrame();
     private JPanel panel;
@@ -14,7 +14,7 @@ class AuthorizationFrame extends MainFrame{
     private JLabel label = new JLabel("                Hello, please, enter your name");
     private String name;
 
-    AuthorizationFrame(){
+    public AuthorizationFrame(){
         super();
         setLayout(new BorderLayout(3,3));
         setSize(450, 300);
