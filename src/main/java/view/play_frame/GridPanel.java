@@ -9,10 +9,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GridPanel extends JPanel {
+class GridPanel extends JPanel {
 
-    int numButtons;
-    static String[] pics = {
+    private int numButtons;
+    private static String[] pics = {
             "resources/card_images/6d76bca8aa50fe6b50776d76c5259a22.jpg",
             "resources/card_images/18-187597_koala-bearsteddy-bearscute-cliparttatty-panda-bear-cartoon-cute.jpg",
             "resources/card_images/281b3d600f48ab1a98a5f47c3feed338.jpg",
@@ -24,22 +24,20 @@ public class GridPanel extends JPanel {
             "resources/card_images/kisspng-tiger-cartoon-clip-art-enfant-5ac9d2ca81c289.3685579815231761385315.jpg",
             "resources/card_images/s1200.jpg"};
 
-    static JButton[] buttons;
-    ImageIcon cardBack = new ImageIcon("resources/backgrounds/375666.jpg");
-    ImageIcon[] icons;
+    private static JButton[] buttons;
+    private ImageIcon cardBack = new ImageIcon("resources/backgrounds/375666.jpg");
+    private ImageIcon[] icons;
 
-    int openImages;
+    private int openImages;
     private int currentIndex;
     private int oddClickIndex;
-    private int numClicks;
 
-    Timer myTimer;
+    private Timer myTimer;
     private Game game;
     private Config config;
-    int sizeY;
-    int sizeX;
+    private int sizeX;
 
-    public GridPanel(int startLevel)
+    GridPanel(int startLevel)
     {
         //вызвать конструктор game
         game = new Game(startLevel);
@@ -52,7 +50,7 @@ public class GridPanel extends JPanel {
 
     private void addButtons()
     {
-        sizeY = config.getVertical();
+        int sizeY = config.getVertical();
         sizeX = config.getHorizontal();
         System.out.println(sizeX + " " + sizeY);
         setLayout(new GridLayout(sizeY, sizeX));
@@ -92,7 +90,6 @@ public class GridPanel extends JPanel {
 
             if(openImages % 2 == 0){
                 if(currentIndex == oddClickIndex){
-                    numClicks--;
                     return;
                 }
                 int fx = currentIndex % sizeX;

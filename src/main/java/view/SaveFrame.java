@@ -1,15 +1,15 @@
 package view;
 
-public class SaveFrame extends MainFrame {
+class SaveFrame extends MainFrame {
 
-    public SaveFrame(){
+    SaveFrame(){
         super();
         setSize(700, 600);
 
         setVisible(false);
     }
 
-    public void showSaveFrame(){
+    void showSaveFrame(){
         setVisible(true);
     }
 }

@@ -5,12 +5,10 @@ import view.MainFrame;
 public class PlayFrame extends MainFrame {
 
 
-    private PlayPanel fieldPanel;
-
     public PlayFrame(){
         super();
         setSize(600, 700);
-        fieldPanel = new PlayPanel();
+        PlayPanel fieldPanel = new PlayPanel();
         setContentPane(fieldPanel);
 
         setVisible(false);

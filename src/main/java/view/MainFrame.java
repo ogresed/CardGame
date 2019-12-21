@@ -2,17 +2,12 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.lang.reflect.Method;
-import java.security.InvalidParameterException;
 
 public class MainFrame extends JFrame{
 
     private static final long serialVersionUID = 1L;
-    private JMenuBar menuBar;
-    private JToolBar toolBar;
 
-   public MainFrame(){
+    public MainFrame(){
 
         try
         {
@@ -21,9 +16,9 @@ public class MainFrame extends JFrame{
         catch(Exception ignored) {
         }
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        menuBar = new JMenuBar();
+       JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
-        toolBar = new JToolBar("Main toolbar");
+        JToolBar toolBar = new JToolBar("Main toolbar");
         toolBar.setRollover(true);
 
         add(toolBar, BorderLayout.PAGE_START);

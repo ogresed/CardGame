@@ -6,15 +6,13 @@ import javax.swing.*;
 import javax.swing.border.MatteBorder;
 import java.awt.*;
 
-public class AuthorizationFrame extends MainFrame{
+class AuthorizationFrame extends MainFrame{
 
     private PlayFrame playFrame = new PlayFrame();
-    private  JButton ok;
     private JPanel panel;
     private JTextField textField;
     private JLabel label = new JLabel("                Hello, please, enter your name");
     private String name;
-    private int borderSize = 80;
 
     AuthorizationFrame(){
         super();
@@ -29,13 +27,13 @@ public class AuthorizationFrame extends MainFrame{
         setVisible(false);
     }
 
-    public void Authorise() {
+    void Authorise() {
         setVisible(true);
     }
 
     private void addButton(){
         createPanel();
-        ok = new JButton("ok");
+        JButton ok = new JButton("ok");
         ok.addActionListener(event -> onPlay());
         panel.add(ok);
     }
@@ -60,7 +58,8 @@ public class AuthorizationFrame extends MainFrame{
         textField = new JTextField();
     }
 
-    void AddBackground(){
-        panel.setBorder(new MatteBorder(borderSize,borderSize,borderSize,borderSize, new ImageIcon("resources/backgrounds/MXep.gif")));
+    private void AddBackground(){
+        int borderSize = 80;
+        panel.setBorder(new MatteBorder(borderSize, borderSize, borderSize, borderSize, new ImageIcon("resources/backgrounds/MXep.gif")));
     }
 }

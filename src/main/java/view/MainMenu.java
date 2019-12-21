@@ -16,7 +16,7 @@ public class MainMenu extends MainFrame{
     }
 
 
-    void AddButtons(){
+    private void AddButtons(){
         CreateButtons();
         menuPanel.add(playButton);
         menuPanel.add(saveButton);
@@ -25,7 +25,7 @@ public class MainMenu extends MainFrame{
         menuPanel.add(exitButton);
     }
 
-    void CreateButtons(){
+    private void CreateButtons(){
         playButton = new JButton(new ImageIcon("resources/icons/play.jpg") );
         playButton.addActionListener(e -> Authorise());
         saveButton = new JButton(new ImageIcon("resources/icons/save.jpg") );
@@ -36,25 +36,26 @@ public class MainMenu extends MainFrame{
         exitButton.addActionListener(e -> onExit());
     }
 
-    void CreatePanels(){
+    private void CreatePanels(){
         menuPanel = new JPanel();
         menuPanel.setLayout(new GridLayout(5, 1));
         AddBackground();
     }
 
-    void Authorise(){
+    private void Authorise(){
         authorizationFrame.Authorise();
         setVisible(false);
     }
 
-    void AddPanels(){
+    private void AddPanels(){
         CreatePanels();
         AddButtons();
         add(menuPanel);
     }
 
-    void AddBackground(){
-        menuPanel.setBorder(new MatteBorder(borderSize,borderSize,borderSize,borderSize, new ImageIcon("resources/backgrounds/43MW.gif")));
+    private void AddBackground(){
+        int borderSize = 100;
+        menuPanel.setBorder(new MatteBorder(borderSize, borderSize, borderSize, borderSize, new ImageIcon("resources/backgrounds/43MW.gif")));
     }
 
     private void onExit() {
@@ -67,7 +68,6 @@ public class MainMenu extends MainFrame{
     private JButton playButton;
     private JButton topButton;
     private JPanel menuPanel;
-    private int borderSize = 100;
 
     private AuthorizationFrame authorizationFrame = new AuthorizationFrame();
     private SaveFrame saveFrame = new SaveFrame();
