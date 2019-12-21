@@ -33,8 +33,8 @@ class GridPanel extends JPanel {
     private int oddClickIndex;
 
     private Timer myTimer;
-    private Game game;
-    private Config config;
+    private transient Game game;
+    private transient Config config;
     private int sizeX;
 
     GridPanel(int startLevel)
